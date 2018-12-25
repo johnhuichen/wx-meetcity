@@ -3,13 +3,21 @@
 const app = getApp()
 
 const data = {
-  motto: "Hello World",
+  motto: 'Hello World',
   userInfo: {},
   hasUserInfo: false,
-  canIUse: wx.canIUse("button.open-type.getUserInfo")
+  canIUse: wx.canIUse('button.open-type.getUserInfo')
 }
 
 function onLoad() {
+  wx.request({
+    url: 'http://localhost:9000',
+    success: res => {
+      // eslint-disable-next-line
+      console.log(res)
+    }
+  })
+
   if (app.globalData.userInfo) {
     this.setData({
       userInfo: app.globalData.userInfo,
@@ -40,11 +48,12 @@ function onLoad() {
 
 function bindViewTap() {
   wx.navigateTo({
-    url: "../logs/logs"
+    url: '../logs/logs'
   })
 }
 
 function getUserInfo(e) {
+  // eslint-disable-next-line
   console.log(e)
   app.globalData.userInfo = e.detail.userInfo
   this.setData({
