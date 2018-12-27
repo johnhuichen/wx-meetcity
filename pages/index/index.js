@@ -1,5 +1,7 @@
 //index.js
 //获取应用实例
+import { getUsers } from '../../utils/graphql'
+
 const app = getApp()
 
 const data = {
@@ -10,13 +12,8 @@ const data = {
 }
 
 function onLoad() {
-  wx.request({
-    url: 'http://localhost:9000',
-    success: res => {
-      // eslint-disable-next-line
-      console.log(res)
-    }
-  })
+  // eslint-disable-next-line
+  getUsers().then(res => console.log(res))
 
   if (app.globalData.userInfo) {
     this.setData({

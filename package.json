@@ -18,5 +18,8 @@
   "homepage": "https://github.com/johnhuichen/wx-meetcity#readme",
   "devDependencies": {
     "eslint": "^5.11.0"
+  },
+  "dependencies": {
+    "wxapp-graphql": "0.0.3"
   }
 }

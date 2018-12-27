@@ -4,6 +4,12 @@
     "commonjs": true,
     "es6": true
   },
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "experimentalObjectRestSpread": true
+    }
+  },
   "extends": "eslint:recommended",
   "rules": {
     "indent": ["error", 2],
@@ -11,5 +17,5 @@
     "quotes": ["error", "single"],
     "semi": ["error", "never"]
   },
-  "globals": { "wx": true, "getApp": true, "Page":  true },
+  "globals": { "wx": true, "getApp": true, "Page": true }
 }
