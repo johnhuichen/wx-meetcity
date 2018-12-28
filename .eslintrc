@@ -6,9 +6,7 @@
   },
   "parserOptions": {
     "sourceType": "module",
-    "ecmaFeatures": {
-      "experimentalObjectRestSpread": true
-    }
+    "ecmaVersion": 10
   },
   "extends": "eslint:recommended",
   "rules": {

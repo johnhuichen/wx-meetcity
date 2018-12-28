@@ -1,7 +1,3 @@
-//index.js
-//获取应用实例
-import { getUsers } from '../../utils/graphql'
-
 const app = getApp()
 
 const data = {
@@ -12,9 +8,6 @@ const data = {
 }
 
 function onLoad() {
-  // eslint-disable-next-line
-  getUsers().then(res => console.log(res))
-
   if (app.globalData.userInfo) {
     this.setData({
       userInfo: app.globalData.userInfo,

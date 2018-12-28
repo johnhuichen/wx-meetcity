@@ -1,5 +1,4 @@
-//app.js
-import { getSessionData } from './utils/graphql'
+import { getUsers, getSessionData } from './repository/index'
 
 const globalData = {
   userInfo: null,
@@ -14,9 +13,9 @@ function onLaunch() {
 
   wx.login({
     success: res => {
-      getSessionData(res.code).then(
-        sessionData => (this.globalData.sessionData = sessionData)
-      )
+      getSessionData(res.code)
+        .then(sessionData => (this.globalData.sessionData = sessionData))
+        .then(getUsers)
     }
   })
 
