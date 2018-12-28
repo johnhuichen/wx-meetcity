@@ -5,6 +5,19 @@ const gql = GraphQL(
   true
 )
 
+function getSessionData(code) {
+  const getSessionDataQuery = `
+    query($code: String) {
+      getSessionData(code: $code)
+    }
+  `
+
+  return gql.query({
+    query: getSessionDataQuery,
+    variables: { code }
+  })
+}
+
 function getUsers() {
   const getUsersQuery = `
     query {
@@ -19,4 +32,4 @@ function getUsers() {
   })
 }
 
-export { getUsers }
+export { getSessionData, getUsers }
