@@ -12,10 +12,14 @@ const gql = GraphQL(
 const query = options => {
   const app = getApp()
 
-  gql.query({
-    ...options,
-    variables: { sessionData: app.globalData.sessionData }
-  })
+  gql
+    .query({
+      ...options,
+      variables: { sessionData: app.globalData.sessionData }
+    })
+    .catch(() => {
+      // TODO: handle error here
+    })
 }
 
 export { gql, query }
