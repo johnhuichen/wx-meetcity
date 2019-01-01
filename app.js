@@ -1,3 +1,5 @@
+// import { createStore, combineReducers } from 'redux'
+// import reducers from './reducers/index'
 import 'wx-promise-pro'
 import { getSessionData } from './repository/index'
 
@@ -6,7 +8,7 @@ const globalData = {
   sessionData: null
 }
 
-function getUserAndSessionData() {
+function getUserAndSessionData(app) {
   wx.showLoading({
     title: '加载中',
     mask: true
@@ -24,14 +26,14 @@ function getUserAndSessionData() {
       ])
     })
     .then(([{ getSessionData: sessionData }, { userInfo }]) => {
-      this.globalData.sessionData = sessionData
-      this.globalData.userInfo = userInfo
+      app.globalData.sessionData = sessionData
+      app.globalData.userInfo = userInfo
     })
     .finally(wx.hideLoading)
 }
 
 function onLaunch() {
-  getUserAndSessionData()
+  getUserAndSessionData(this)
 
   // Demo codes below
   // 展示本地存储能力
