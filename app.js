@@ -1,6 +1,6 @@
-// import { createStore, combineReducers } from 'redux'
-// import reducers from './reducers/index'
+import { Provider } from 'wechat-weapp-redux'
 import 'wx-promise-pro'
+import store from './redux/store'
 import { getSessionData } from './repository/index'
 
 const globalData = {
@@ -33,6 +33,7 @@ function getUserAndSessionData(app) {
 }
 
 function onLaunch() {
+  console.log(this.store)
   getUserAndSessionData(this)
 
   // Demo codes below
@@ -42,7 +43,9 @@ function onLaunch() {
   wx.setStorageSync('logs', logs)
 }
 
-App({
-  onLaunch,
-  globalData
-})
+App(
+  Provider(store)({
+    onLaunch,
+    globalData
+  })
+)
