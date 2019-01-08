@@ -43,8 +43,11 @@ function bindViewTap() {
 }
 
 const mapStateToData = state => ({
-  userInfo: state.user.userInfo
+  userInfo: state.user.userInfo,
+  test: '123'
 })
+
+const mapDispatchToPage = dispatch => ({})
 
 const pageConfig = {
   data,
@@ -52,6 +55,7 @@ const pageConfig = {
   onLoad
 }
 
-const test = connect(mapStateToData)(pageConfig)
+const test = connect(mapStateToData, mapDispatchToPage)(pageConfig)
+console.log(test)
 
 Page(connect(mapStateToData)(pageConfig))

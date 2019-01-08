@@ -25,10 +25,6 @@ function getUserAndSessionData(app) {
       // TODO: handle user login error
       throw new Error('user is not logged in')
     })
-    .then(() => {
-      // eslint-disable-next-line
-      console.log(app.store.getState())
-    })
     .finally(wx.hideLoading)
 }
 
