@@ -1,4 +1,5 @@
 import {
+  bindActionCreators,
   compose,
   createStore,
   combineReducers,
@@ -12,4 +13,4 @@ const store = createStore(
   compose(applyMiddleware(thunk))
 )
 
-export default store
+export { bindActionCreators, store }

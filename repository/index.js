@@ -1,4 +1,4 @@
 import { getSessionData } from './getSessionData'
-import { getUsers } from './getUsers'
+import { getUserInfo } from './getUserInfo'
 
-export { getSessionData, getUsers }
+export { getSessionData, getUserInfo }
