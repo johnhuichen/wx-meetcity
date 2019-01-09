@@ -3,7 +3,7 @@ import config from '../config/config-loader'
 
 const gql = GraphQL(
   {
-    url: config.graphqlUrl,
+    url: `${config.graphqlHost}/graphql`,
     header: () => {}
   },
   true

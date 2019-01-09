@@ -1,18 +1,17 @@
-import { gql } from '../graphql/graphql'
+import 'wx-promise-pro'
 import userActions from '../redux/actions/user/index'
+import config from '../config/config-loader'
 
 function getSessionData(code) {
   return dispatch => {
-    const getSessionDataQuery = `
-    query($code: String) {
-      getSessionData(code: $code)
-    }
-  `
-
     dispatch(userActions.setSessionDataLoading())
-    return gql
-      .query({ query: getSessionDataQuery, variables: { code } })
-      .then(({ getSessionData: sessionData }) =>
+    return wx.pro
+      .request({
+        url: `${config.graphqlHost}/session-data`,
+        data: { code },
+        method: 'GET'
+      })
+      .then(({ data: sessionData }) =>
         dispatch(userActions.setSessionData(sessionData))
       )
       .catch(() => dispatch(userActions.setSessionDataError()))
