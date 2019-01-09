@@ -1,14 +1,13 @@
 import { Provider } from 'wechat-weapp-redux'
 import 'wx-promise-pro'
-import store from './redux/store'
-import { getSessionData } from './repository/index'
-
-const globalData = {
-  userInfo: null,
-  sessionData: null
-}
+import { store } from './redux/index'
+import { getSessionData, getUserInfo } from './repository/index'
 
 function getUserAndSessionData(app) {
+  const {
+    store: { dispatch }
+  } = app
+
   wx.showLoading({
     title: '加载中',
     mask: true
@@ -17,23 +16,19 @@ function getUserAndSessionData(app) {
   Promise.all([wx.pro.login(), wx.pro.getSetting()])
     .then(([{ code }, { authSetting }]) => {
       if (authSetting['scope.userInfo']) {
-        return Promise.all([getSessionData(code), wx.pro.getUserInfo()])
+        return Promise.all([
+          getSessionData(code)(dispatch),
+          getUserInfo()(dispatch)
+        ])
       }
 
-      return Promise.all([
-        getSessionData(code),
-        Promise.resolve({ userInfo: null })
-      ])
-    })
-    .then(([{ getSessionData: sessionData }, { userInfo }]) => {
-      app.globalData.sessionData = sessionData
-      app.globalData.userInfo = userInfo
+      // TODO: handle user login error
+      throw new Error('user is not logged in')
     })
     .finally(wx.hideLoading)
 }
 
 function onLaunch() {
-  console.log(this.store)
   getUserAndSessionData(this)
 
   // Demo codes below
@@ -45,7 +40,6 @@ function onLaunch() {
 
 App(
   Provider(store)({
-    onLaunch,
-    globalData
+    onLaunch
   })
 )

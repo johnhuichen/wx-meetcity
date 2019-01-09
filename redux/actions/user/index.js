@@ -1,6 +1,7 @@
-const getUserInfo = userInfo => ({
-  type: 'GET_USER_INFO',
-  userInfo
-})
+import { createActionFunctions } from '../../utils'
 
-export { getUserInfo }
+const DATA_ARRAY = ['userInfo', 'sessionData']
+
+const defaultUserActions = createActionFunctions(DATA_ARRAY)
+
+export default defaultUserActions

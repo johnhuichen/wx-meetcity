@@ -1,14 +1,7 @@
-const defaultState = {
-  userInfo: null
-}
+import { createReducers } from '../../utils'
 
-const user = (state = defaultState, action) => {
-  switch (action.type) {
-    case 'GET_USER_INFO':
-      return { ...state, userInfo: action.userInfo }
-    default:
-      return state
-  }
-}
+const DATA_ARRAY = ['userInfo', 'sessionData']
+
+const user = createReducers(DATA_ARRAY)
 
 export default user
