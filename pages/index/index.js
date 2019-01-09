@@ -5,12 +5,14 @@ const app = getApp()
 const { store } = app
 
 function updateData() {
+  const { getUsersDone } = this.data
   const {
     user: { userInfo, sessionData }
   } = store.getState()
 
-  if (sessionData) {
+  if (sessionData && !getUsersDone) {
     this.dispatchGetUsers()
+    this.setData({ getUsersDone: true })
   }
 
   this.setData({ userInfo })
@@ -43,7 +45,7 @@ const mapDispatchToPage = dispatch =>
   )
 
 const pageConfig = {
-  data: { motto: 'Hello World' },
+  data: { motto: 'Hello World', getUsersDone: false },
   bindViewTap,
   onLoad,
   onUnload,
