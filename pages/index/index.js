@@ -1,11 +1,18 @@
 import { connect } from 'wechat-weapp-redux'
+import { bindActionCreators } from '../../redux/index'
+import { getUsers } from '../../repository/index'
 const app = getApp()
 const { store } = app
 
 function updateData() {
   const {
-    user: { userInfo }
+    user: { userInfo, sessionData }
   } = store.getState()
+
+  if (sessionData) {
+    this.dispatchGetUsers()
+  }
+
   this.setData({ userInfo })
 }
 
@@ -27,6 +34,14 @@ const mapStateToData = state => ({
   userInfo: state.user.userInfo
 })
 
+const mapDispatchToPage = dispatch =>
+  bindActionCreators(
+    {
+      dispatchGetUsers: getUsers
+    },
+    dispatch
+  )
+
 const pageConfig = {
   data: { motto: 'Hello World' },
   bindViewTap,
@@ -35,4 +50,4 @@ const pageConfig = {
   updateData
 }
 
-Page(connect(mapStateToData)(pageConfig))
+Page(connect(mapStateToData, mapDispatchToPage)(pageConfig))

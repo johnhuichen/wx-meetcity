@@ -11,11 +11,14 @@ const gql = GraphQL(
 
 const query = options => {
   const app = getApp()
+  const {
+    user: { sessionData }
+  } = app.store.getState()
 
   gql
     .query({
       ...options,
-      variables: { sessionData: app.globalData.sessionData }
+      variables: { sessionData }
     })
     .catch(() => {
       // TODO: handle error here
