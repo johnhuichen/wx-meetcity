@@ -5,16 +5,14 @@ const app = getApp()
 const { store } = app
 
 function updateData() {
-  const { getUsersDone } = this.data
+  const { getInitialDataDone } = this.data
   const {
     user: { userInfo, sessionData }
   } = store.getState()
 
-  if (sessionData) {
-    if (!getUsersDone) {
-      this.dispatchGetUsers()
-      this.setData({ getUsersDone: true })
-    }
+  if (sessionData && !getInitialDataDone) {
+    this.dispatchGetUsers()
+    this.setData({ getInitialDataDone: true })
   }
 
   this.setData({ userInfo })
@@ -28,9 +26,15 @@ function onUnload() {
   this.unsubscribe()
 }
 
-function bindViewTap() {
+function gotoCreateEvent() {
   wx.navigateTo({
-    url: '../logs/logs'
+    url: '../createEvent/createEvent'
+  })
+}
+
+function gotoMyEvents() {
+  wx.navigateTo({
+    url: '../myEvents/myEvents'
   })
 }
 
@@ -47,11 +51,15 @@ const mapDispatchToPage = dispatch =>
   )
 
 const pageConfig = {
-  data: { motto: 'Hello World', getUsersDone: false },
-  bindViewTap,
+  data: {
+    getInitialDataDone: false,
+    showMenuItems: false
+  },
   onLoad,
   onUnload,
-  updateData
+  updateData,
+  gotoCreateEvent,
+  gotoMyEvents
 }
 
 Page(connect(mapStateToData, mapDispatchToPage)(pageConfig))
