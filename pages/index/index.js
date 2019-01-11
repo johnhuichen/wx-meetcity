@@ -10,9 +10,11 @@ function updateData() {
     user: { userInfo, sessionData }
   } = store.getState()
 
-  if (sessionData && !getUsersDone) {
-    this.dispatchGetUsers()
-    this.setData({ getUsersDone: true })
+  if (sessionData) {
+    if (!getUsersDone) {
+      this.dispatchGetUsers()
+      this.setData({ getUsersDone: true })
+    }
   }
 
   this.setData({ userInfo })
