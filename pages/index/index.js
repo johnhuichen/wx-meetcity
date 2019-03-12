@@ -38,6 +38,12 @@ function gotoMyEvents() {
   })
 }
 
+function gotoMapView() {
+  wx.navigateTo({
+    url: '../mapView/mapView'
+  })
+}
+
 const mapStateToData = state => ({
   userInfo: state.user.userInfo
 })
@@ -59,7 +65,8 @@ const pageConfig = {
   onUnload,
   updateData,
   gotoCreateEvent,
-  gotoMyEvents
+  gotoMyEvents,
+  gotoMapView
 }
 
 Page(connect(mapStateToData, mapDispatchToPage)(pageConfig))

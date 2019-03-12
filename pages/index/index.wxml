@@ -9,6 +9,7 @@
   <view class="menu-item-container">
     <button class="goto-create-event" bindtap="gotoCreateEvent">我要组织活动</button>
     <button class="goto-my-events" bindtap="gotoMyEvents">查看我的活动</button>
+    <button class="goto-map-view" bindtap="gotoMapView">地图</button>
   </view>
 </view>
 

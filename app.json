@@ -2,7 +2,8 @@
   "pages": [
     "pages/index/index",
     "pages/createEvent/createEvent",
-    "pages/myEvents/myEvents"
+    "pages/myEvents/myEvents",
+    "pages/mapView/mapView"
   ],
   "window": {
     "backgroundTextStyle": "light",
